@@ -169,49 +169,49 @@
                     <ion-icon name="storefront-outline"></ion-icon>
                 </div>
                 <p>生活</p>
-                <a href="category.blade.php?category=生活" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="shirt-outline"></ion-icon>
                 </div>
                 <p>服飾</p>
-                <a href="category.blade.php?category=服飾" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="dice-outline"></ion-icon>
                 </div>
                 <p>娛樂</p>
-                <a href="category.blade.php?category=娛樂" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="tv-outline"></ion-icon>
                 </div>
                 <p>3C</p>
-                <a href="category.blade.php?category=3C" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="game-controller-outline"></ion-icon>
                 </div>
                 <p>遊戲</p>
-                <a href="category.blade.php?category=遊戲" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="book-outline"></ion-icon>
                 </div>
                 <p>書</p>
-                <a href="category.blade.php?category=書" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="fast-food-outline"></ion-icon>
                 </div>
                 <p>零食</p>
-                <a href="category.blade.php?category=零食" class="stretched-link"></a>
+                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
             </div>
             <!--                <ion-icon name="cart-outline"></ion-icon>-->
         </section>
