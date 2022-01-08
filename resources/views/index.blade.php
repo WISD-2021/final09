@@ -77,7 +77,7 @@
                         <a class="nav-link" href="javascript:void(0)">通知</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="store.blade.php">賣場</a>
+                        <a class="nav-link" href="{{route('store')}}">賣場</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>
@@ -107,8 +107,8 @@
                             </a>
                             <ul class='dropdown-menu' >
                                 <li>
-                                    <a class='dropdown-item'  href='{{route('accountadjust')}}' >我的帳戶</a>
-                                    <a class='dropdown-item' href='{{route('dindan')}}'>購買清單</a>
+                                    <a class='dropdown-item'  href='{{route('accountadjust','0')}}' >我的帳戶</a>
+                                    <a class='dropdown-item' href='{{route('dindan','0')}}'>購買清單</a>
                                     <a class='dropdown-item' href='{{route('logout')}}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">登出</a>
                                     <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>
                                 </li>
@@ -176,25 +176,25 @@
     <!-- 工具欄 -->
 
     <!-- 推薦商品(個人化) -->
-    <article>
-        <h2 class="my-4">推薦商品</h2>
-        <section class="row">
-            @foreach($users as $items)
-                <div >
-                        <h4 class="post-title">
-                            {{ $items->name }}
-                        </h4>
-                </div>
+{{--    <article>--}}
+{{--        <h2 class="my-4">推薦商品</h2>--}}
+{{--        <section class="row">--}}
+{{--            @foreach($users as $items)--}}
+{{--                <div >--}}
+{{--                        <h4 class="post-title">--}}
+{{--                            {{ $items->name }}--}}
+{{--                        </h4>--}}
+{{--                </div>--}}
 
-            @endforeach
+{{--            @endforeach--}}
             <?php
 //            include "login.blade.php";
 //
 //            $aaa=new test();
 //            $aaa->HistorySearch();
             ?>
-        </section>
-    </article>
+{{--        </section>--}}
+{{--    </article>--}}
 
     <!-- 分類 -->
     <article>
@@ -254,16 +254,16 @@
     </article>
 
     <!-- 暢銷/最新商品 -->
-    <article>
-        <h2 class="my-4">暢銷商品</h2>
-        <section class="row">
+{{--    <article>--}}
+{{--        <h2 class="my-4">暢銷商品</h2>--}}
+{{--        <section class="row">--}}
             <?php
 
 //            $bbb=new test();
 //            $bbb->Hottest();
             ?>
-        </section>
-    </article>
+{{--        </section>--}}
+{{--    </article>--}}
 
     <article>
         <h2 class="my-4">最新商品</h2>
