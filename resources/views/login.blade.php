@@ -16,9 +16,14 @@
     <!-- bootstrap js -->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- style -->
-    <link rel="stylesheet" type="text/css" href="style.css">
 
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- style -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 
 <body>
@@ -40,25 +45,26 @@
 <main>
     <!-- 登入 -->
     <section class="wrap">
-        <form class="item_form" method="post">
+        <form class="item_form" method="post" action="{{route('login')}}">
+            @csrf
             <div class="item">
-                <span>使用者名稱</span>
-                <input type="text" name="name">
+                <span>email</span>
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
             <div class="item">
                 <span>密碼</span>
-                <input type="password" name="pwd">
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
             <div class="item item_button">
                 <button type="submit">登入</button>
-                <a href="register.blade.php">註冊</a>
+                <a href="{{route('registerr')}}">註冊</a>
             </div>
         </form>
         <?php
-        include "test.php";
+//        include "test.php";
 
-        $login = new test();
-        $login->Login($_POST['name'], $_POST['pwd']);
+//        $login = new test();
+//        $login->Login($_POST['name'], $_POST['pwd']);
         ?>
     </section>
 </main>

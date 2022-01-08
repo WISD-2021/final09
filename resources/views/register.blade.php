@@ -17,7 +17,13 @@
 
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- style -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 
 <body>
@@ -36,33 +42,36 @@
 
 <main>
     <section class="wrap">
-        <form class="item_form" method="post" enctype="multipart/form-data">
+        <form class="item_form" method="post" enctype="multipart/form-data" action="{{route('register')}}">
+            @csrf
+            <div>
+                <div class="item">
+                    <span>使用者名稱</span>
+                    <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                </div>
+
+            </div>
             <div class="item">
-                <span>使用者名稱</span>
-                <input type="text" class="" name="name">
+                <span>電子郵件</span>
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
             <div class="item">
                 <span>密碼</span>
-                <input type="password" class="" name="pwd">
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
             <div class="item">
-                <span>電話</span>
-                <input type="tel" class="" name="phone" pattern="[0-9]{10}" required>
+                <span>確認密碼</span>
+            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
-            <div class="item item_radio">
-                <span style="margin-right: 50px">性別</span>
-                <span style="margin-right: 15px">男<input type="radio" style="width: auto; margin-left: 5px" name="sex" value="男"></span>
-                <span >女<input type="radio" style="width: auto" name="sex" value="女"></span>
-            </div>
-            <div class="item">
+                <div class="item">
                 <button type="submit">註冊</button>
             </div>
         </form>
         <?php
-        include "test.php";
-
-        $register = new test();
-        $register->Register($_POST['name'], $_POST['pwd'], $_POST['phone'], $_POST['sex']);
+//        include "test.php";
+//
+//        $register = new test();
+//        $register->Register($_POST['name'], $_POST['pwd'], $_POST['phone'], $_POST['sex']);
         ?>
     </section>
 
