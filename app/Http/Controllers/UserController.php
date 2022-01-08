@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,7 +36,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('users')
+            ->where('id', auth()->user()->id)
+            ->update(array('email' => $_POST["email"]));
+        $hashstr=Hash::make($_POST["password"]);
+        DB::table('users')
+            ->where('id', auth()->user()->id)
+            ->update(array('password' => $hashstr));
+        return redirect()->route('loginn');
     }
 
     /**

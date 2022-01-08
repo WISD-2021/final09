@@ -38,7 +38,7 @@
     <!-- 導覽 -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container narbar-default narbar-fixed">
-            <a class="navbar-brand" href="index.blade.php">小藍網購</a>
+            <a class="navbar-brand" href="{{route('index')}}">小藍網購</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -68,20 +68,21 @@
                     </li>
 
                 </ul>
-               <ul class="navbar-nav">
-                           <li class='nav-item dropdown'>
-                               <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown'>
-                                   歡迎{{$auth->name}}
-                                   </a>
-                               <ul class='dropdown-menu' >
-                                   <li>
-                                       <a class='dropdown-item'  href='accountadjust.blade.php' >我的帳戶</a>
-                                       <a class='dropdown-item' href='dindan.blade.php'>購買清單</a>
-                                       <a class='dropdown-item' href='layouts/destroy.blade.php'>登出</a>
-                                   </li>
-                               </ul>
+                <ul class="navbar-nav">
+                    <li class='nav-item dropdown'>
+                        <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown'>
+                            歡迎{{$auth->name}}
+                        </a>
+                        <ul class='dropdown-menu' >
+                            <li>
+                                <a class='dropdown-item'  href='{{route('accountadjust','0')}}' >我的帳戶</a>
+                                <a class='dropdown-item' href='{{route('dindan','0')}}'>購買清單</a>
+                                <a class='dropdown-item' href='{{route('logout')}}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">登出</a>
+                                <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>
+                            </li>
+                        </ul>
 
-               </li></ul>
+                    </li></ul>
 
 
             </div>
@@ -103,16 +104,17 @@
             </div>
 <main>
 @if($page->accountadjust === '1')
-<section class='wrap'><form class='item_form' method='post' >
-
+<section class='wrap'><form class='item_form' method='post' action="/user/store">
+    @method('POST')
+    @csrf
     <!-- 編輯帳戶 -->   <p>編輯/查看基本資料</p>
             <div class='item'>
                 <span>信箱</span>
-                <input type='text' name='email' value="123">
+                <input type='text' name='email' value="{{auth()->user()->email}}">
             </div>
             <div class='item'>
                 <span>密碼</span>
-                <input type='password' name='pwd' value="123">
+                <input type='password' name='password' value="">
             </div>
             <div class='item item_button'>
                 <button type='submit'>更改/新增</button>
