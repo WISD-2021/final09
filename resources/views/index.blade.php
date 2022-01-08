@@ -1,6 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+{{--<x-app-layout>--}}
+
+
+
+
 <head>
     <title>小藍網購</title>
     <meta charset="utf-8">
@@ -44,7 +49,7 @@
 <body>
 <header>
     <!-- 導覽 -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <x class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.blade.php">小藍網購</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -80,7 +85,24 @@
 //                        header("Location: search.blade.php?search=".$_POST['search']);
                     ?>
                 </ul>
+
                 <ul class="navbar-nav">
+{{--                    @if (Route::has('login'))--}}
+                        <div class="hidden top-0 right-0 px-6 py-4 sm:block">
+                            @auth
+                                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">會員中心</a>
+                                
+                                    <a class="text-sm text-gray-700 underline" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('登出')}}</a>
+                                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>
+                            @else
+                                <a href="{{ route('loginn') }}" class="text-sm text-gray-700 underline">Login</a>
+
+{{--                                @if (Route::has('register'))--}}
+                                    <a href="{{ route('registerr') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+{{--                                @endif--}}
+{{--                            @endif--}}
+                        </div>
+                    @endif
                     <?php
                     //顯示會員
 //                    session_start();
@@ -107,7 +129,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </x>
 
     <!-- 輪播 -->
     <div id="advertisement" class="carousel slide container" data-bs-ride="carousel">
@@ -151,8 +173,16 @@
     <article>
         <h2 class="my-4">推薦商品</h2>
         <section class="row">
+            @foreach($users as $items)
+                <div >
+                        <h4 class="post-title">
+                            {{ $items->name }}
+                        </h4>
+                </div>
+
+            @endforeach
             <?php
-//            include "test.php";
+//            include "login.blade.php";
 //
 //            $aaa=new test();
 //            $aaa->HistorySearch();
@@ -169,51 +199,50 @@
                     <ion-icon name="storefront-outline"></ion-icon>
                 </div>
                 <p>生活</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '生活')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="shirt-outline"></ion-icon>
                 </div>
                 <p>服飾</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '服飾')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="dice-outline"></ion-icon>
                 </div>
                 <p>娛樂</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '娛樂')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="tv-outline"></ion-icon>
                 </div>
                 <p>3C</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '3C')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="game-controller-outline"></ion-icon>
                 </div>
                 <p>遊戲</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '遊戲')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="book-outline"></ion-icon>
                 </div>
                 <p>書</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '書')}}" class="stretched-link"></a>
             </div>
             <div id="category-item">
                 <div class="icon">
                     <ion-icon name="fast-food-outline"></ion-icon>
                 </div>
                 <p>零食</p>
-                <a href="{{route('category' , 'category')}}" class="stretched-link"></a>
+                <a href="{{route('category' , '零食')}}" class="stretched-link"></a>
             </div>
-            <!--                <ion-icon name="cart-outline"></ion-icon>-->
         </section>
 
     </article>
@@ -248,5 +277,5 @@
 </footer>
 
 </body>
-
+{{--</x-app-layout>--}}
 </html>
