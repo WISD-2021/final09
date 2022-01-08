@@ -66,11 +66,7 @@
                             </div>
                         </form>
                     </li>
-                    <?php
-                    //跳轉搜尋
-//                    if($_POST['search'] != null)
-//                        header("Location: search.blade.php?search=".$_POST['search']);
-                    ?>
+
                 </ul>
                <ul class="navbar-nav">
                            <li class='nav-item dropdown'>
@@ -92,87 +88,57 @@
         </div>
     </nav>
 </header>
-<?php
-//switch($_SESSION["level"]){
-//    case 0: //一般會員
-//        echo "
-//            <div class='w3-sidebar w3-gray w3-bar-block' style='margin-top:40px; width:18%'>
-//                <h3 class='w3-bar-item'>-我的帳戶-</h3>
-//                <a href='accountadjust.blade.php?page=1' class='w3-bar-item w3-button'><font size='5px'>查看/編輯基本資料</font></a>
-//                <a href='accountadjust.blade.php?page=2' class='w3-bar-item w3-button'><font size='5px'>申請賣家權限</font></a>
-//            </div>";
-//        break;
-//    case 1:
-//        echo "
-//            <div class='w3-sidebar w3-gray w3-bar-block' style='margin-top:40px;width:18%'>
-//                <h3 class='w3-bar-item'>*</h3>
-//                <h3 class='w3-bar-item'>-我的帳戶-</h3>
-//                <a href='accountadjust.blade.php?page=1' class='w3-bar-item w3-button'><font size='5px'>查看/編輯基本資料</font></a>
-//
-//            </div>";
-//        break;
-//}
-//echo "<main><section class='wrap'><form class='item_form' method='post' >";
-//if($_GET["page"]<=1 && $_SESSION['level']!=2){
-//     echo "
-//    <!-- 編輯帳戶 -->   <p>編輯/查看基本資料</p>
-//            <div class='item'>
-//                <span>信箱</span>
-//                <input type='text' name='email' value='".$_SESSION['email']."'>
-//            </div>
-//            <div class='item'>
-//                <span>密碼</span>
-//                <input type='password' name='pwd' value='".$_SESSION['password']."'>
-//            </div>
-//            <div class='item'>
-//                <span>電話</span>
-//                <input type='tel' name='phone' pattern='[0-9]{10}' value='".$_SESSION['phone']."'>
-//            </div>
-//            <div class='item item_radio'>
-//                <span style='margin-right: 50px'>性別</span>
-//                <span style='margin-right: 15px'>男<input type='radio' style='width: auto; margin-left: 5px' name='newsex' value='男'></span>
-//                <span >女<input type='radio' style='width: auto' name='newsex' value='女'></span>
-//            </div>
-//            <div class='item'>
-//                <span>生日</span>
-//                <input type='date' name='bd' value='".$_SESSION['birthday']."'>
-//            </div>
-//            <div class='item'>
-//                <span>圖片</span>
-//                <input type='file' name='image' accept='image/gif, image/jpeg, image/png' value='".$_SESSION['image']."'>
-//                <img src='images/" . $_SESSION['image'] . "' width='200px' height='200px'>
-//
-//            </div>
-//            <div class='item item_button'>
-//                <button type='submit'>更改/新增</button>
-//            </div>
-//       ";
-// }
-// elseif($_GET["page"]==2){
-//     echo "
-//    <!-- 登入 -->   <p>驗證賣家基本資料：</p>
-//            <div class='item'>
-//                <span>賣家名稱</span>
-//                <input type='text' name='sellername'>
-//            </div>
-//            <div class='item'>
-//                <span>賣家地址</span>
-//                <input type='text' name='selleraddress'>
-//            </div>
-//            <div class='item item_button'>
-//                <button type='submit'>申請</button>
-//            </div>
-//       ";
-// }
-//
-// echo  "</form></section></main>";
-//
-//include "test.php";
-//
-//$adjust = new test();
-//$adjust->Adjust($_POST['email'], $_POST['pwd'], $_POST['phone'],$_POST['newsex'], $_POST['bd'],$_POST["image"],$_POST['sellername'],$_POST["selleraddress"]);
 
-?>
+{{--            <div class='w3-sidebar w3-gray w3-bar-block' style='margin-top:40px; width:18%'>--}}
+{{--                <h3 class='w3-bar-item'>-我的帳戶-</h3>--}}
+{{--                <a href='accountadjust.blade.php?page=1' class='w3-bar-item w3-button'><font size='5px'>查看/編輯基本資料</font></a>--}}
+{{--                <a href='accountadjust.blade.php?page=2' class='w3-bar-item w3-button'><font size='5px'>申請賣家權限</font></a>--}}
+{{--            </div>--}}
+
+            <div class='w3-sidebar w3-gray w3-bar-block' style='margin-top:40px;width:18%'>
+                <h3 class='w3-bar-item'>-我的帳戶-</h3>
+                <a href='{{route('accountadjust' ,'1')}}' class='w3-bar-item w3-button'><font size='5px'>查看/編輯基本資料</font></a>
+                <a href='{{route('accountadjust' ,'2')}}' class='w3-bar-item w3-button'><font size='5px'>申請賣家權限</font></a>
+
+            </div>
+<main>
+@if($page->accountadjust === '1')
+<section class='wrap'><form class='item_form' method='post' >
+
+    <!-- 編輯帳戶 -->   <p>編輯/查看基本資料</p>
+            <div class='item'>
+                <span>信箱</span>
+                <input type='text' name='email' value="123">
+            </div>
+            <div class='item'>
+                <span>密碼</span>
+                <input type='password' name='pwd' value="123">
+            </div>
+            <div class='item item_button'>
+                <button type='submit'>更改/新增</button>
+            </div></form></section>
+@elseif($page->accountadjust === '2')
+            <section class='wrap'><form class='item_form' method='post' >
+
+    <!-- 登入 -->   <p>驗證賣家基本資料：</p>
+            <div class='item'>
+                <span>賣家名稱</span>
+                <input type='text' name='sellername'>
+            </div>
+            <div class='item'>
+                <span>賣家地址</span>
+                <input type='text' name='selleraddress'>
+            </div>
+            <div class='item item_button'>
+                <button type='submit'>申請</button>
+            </div> </form></section>
+@endif
+
+ </form></section></main>
+
+
+
+
 
 
 

@@ -30,5 +30,5 @@ Route::get('sellercenter', [\App\Http\Controllers\PagesController::class, 'selle
 Route::get('productDetail', [\App\Http\Controllers\PagesController::class, 'productDetail'])->name('productDetail');
 Route::get('dindan', [\App\Http\Controllers\PagesController::class, 'dindan'])->name('dindan');
 Route::get('category/{category}', [\App\Http\Controllers\PagesController::class, 'category'])->name('category');
-Route::get('accountadjust', [\App\Http\Controllers\PagesController::class, 'accountadjust'])->name('accountadjust');
+Route::get('accountadjust/{accountadjust}', [\App\Http\Controllers\PagesController::class, 'accountadjust'])->name('accountadjust');
 Route::get('administrator', [\App\Http\Controllers\PagesController::class, 'administrator'])->name('administrator');
