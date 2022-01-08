@@ -105,6 +105,9 @@
                     @if(auth()->user()->auth === 3)
                     <a href='{{route('accountadjust' ,'3')}}' class='w3-bar-item w3-button'><font size='5px'>審核賣家權限</font></a>
                 @endif
+                @if(auth()->user()->auth >= 2)
+                    <a href='{{route('accountadjust' ,'4')}}' class='w3-bar-item w3-button'><font size='5px'>商品上架</font></a>
+                @endif
             </div>
 <main>
 
@@ -169,6 +172,52 @@
                 </div> </form>
             @endforeach
         </section>
+        @elseif($page->accountadjust === '4')
+        <section class='wrap'><form class='item_form' method='post' action="/user/store">
+            @method('POST')
+            @csrf
+            <!-- 編輯帳戶 -->   <p>商品上架</p>
+                <div class='item'>
+                    <span>商品名稱</span>
+                    <input type='text' name='name' required>
+                </div>
+                <div class="flex">
+                <div class='item'>商品類型:
+                    <select name="category">
+                        <option value="生活">生活</option>
+                        <option value="服飾">服飾</option>
+                        <option value="娛樂">娛樂</option>
+                        <option value="3C">3C</option>
+                        <option value="家電">家電</option>
+                        <option value="其他">其他</option>
+                        <option value="零食">零食</option>
+                        <option value="書">書</option>
+                    </select>
+                </div>
+                </div>
+                <div class="flex">
+                    <div class="item" >
+                        庫存量:
+                        <input type="text" name="quantity" required>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="item" >
+                        價格:
+                        <input type="text" name="price" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+                </div>
+                <div class="item">
+                    商品描述:
+                    <textarea style="resize:none;width:600px;height:200px;color:black" name="description" required></textarea>
+                </div>
+
+                <div class='item item_button'>
+                    <button type='submit' name="edit" value="4">上架</button>
+                </div></form></section>
     @endif
  </form></section></main>
 

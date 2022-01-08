@@ -64,7 +64,20 @@ class UserController extends Controller
                 ->update(array('auth' => 2));
             return redirect()->route('accountadjust',0);
         }
-
+        if($_POST["edit"]==4)
+        {
+            DB::table('products')->insert(
+                array('name' => $_POST["name"]
+                , 'member_id' => auth()->user()->id
+                , 'description' => $_POST["description"]
+                , 'category' => $_POST["category"]
+                , 'image' => $_POST["image"]
+                , 'price' => $_POST["price"]
+                , 'stock' => $_POST["quantity"]
+                )
+            );
+            return redirect()->route('accountadjust',0);
+        }
     }
 
     /**
