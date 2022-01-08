@@ -10,8 +10,14 @@
     <!-- bootstrap js -->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- style -->
-    <link rel="stylesheet" type="text/css" href="style1.css">
+    <link rel="stylesheet" href="{{asset('css/style1.css')}}">
     <style>
         footer{
             margin-top: 50px;
@@ -54,7 +60,7 @@
     <!-- 導覽 -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.blade.php">小藍網購</a>
+            <a class="navbar-brand" href="{{route('index')}}">小藍網購</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,33 +90,33 @@
                     </li>
                     <?php
                     //跳轉搜尋
-                    if($_POST['search'] != null)
-                        header("Location: search.blade.php?search=".$_POST['search']);
+//                    if($_POST['search'] != null)
+//                        header("Location: search.blade.php?search=".$_POST['search']);
                     ?>
                 </ul>
                 <ul class="navbar-nav">
                     <?php
                     //顯示會員
-                    session_start();
-                    if($_SESSION['name'] == null)
-                        echo "<li class='nav-item'><a class='nav-link' href='login.blade.php'>會員登入</a></li>";
-                    else
-                    {
-                        echo "
-                            <li class='nav-item dropdown'>
-                                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    歡迎".$_SESSION['name']. "
-                                </a>
-                                <ul class='dropdown-menu'>
-                                    <li>
-                                        <a class='dropdown-item' href='accountadjust.blade.php'>我的帳戶</a>
-                                        <a class='dropdown-item' href='dindan.blade.php'>購買清單</a>
-                                        <a class='dropdown-item' href='layouts/destroy.blade.php'>登出</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            ";
-                    }
+//                    session_start();
+//                    if($_SESSION['name'] == null)
+//                        echo "<li class='nav-item'><a class='nav-link' href='login.blade.php'>會員登入</a></li>";
+//                    else
+//                    {
+//                        echo "
+//                            <li class='nav-item dropdown'>
+//                                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+//                                    歡迎".$_SESSION['name']. "
+//                                </a>
+//                                <ul class='dropdown-menu'>
+//                                    <li>
+//                                        <a class='dropdown-item' href='accountadjust.blade.php'>我的帳戶</a>
+//                                        <a class='dropdown-item' href='dindan.blade.php'>購買清單</a>
+//                                        <a class='dropdown-item' href='layouts/destroy.blade.php'>登出</a>
+//                                    </li>
+//                                </ul>
+//                            </li>
+//                            ";
+//                    }
                     ?>
                 </ul>
             </div>
@@ -148,14 +154,9 @@
                 </section>
             </aside>
         <article>
-            <?php
-            if($_GET['category'] != null){
-                echo "<h2>".$_GET['category']." 的搜尋結果</h2>";
-            }
-                include "test.php";
-                $SearchResults = new test();
-                $SearchResults->Category($_GET['category']);
-            ?>
+            @foreach($post as $posts)
+                {{$posts->name}}
+            @endforeach
         </article>
 
 </main>
