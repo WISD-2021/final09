@@ -36,14 +36,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('users')
-            ->where('id', auth()->user()->id)
-            ->update(array('email' => $_POST["email"]));
-        $hashstr=Hash::make($_POST["password"]);
-        DB::table('users')
-            ->where('id', auth()->user()->id)
-            ->update(array('password' => $hashstr));
-        return redirect()->route('loginn');
+        if($_POST["edit"]==1)
+        {
+            DB::table('users')
+                ->where('id', auth()->user()->id)
+                ->update(array('email' => $_POST["email"]));
+            $hashstr=Hash::make($_POST["password"]);
+            DB::table('users')
+                ->where('id', auth()->user()->id)
+                ->update(array('password' => $hashstr));
+            return redirect()->route('accountadjust',0);
+        }
+        if($_POST["edit"]==2)
+        {
+            DB::table('users')
+                ->where('name', $_POST["sellername"])
+                ->update(array('auth' => 1));
+            DB::table('users')
+                ->where('name', $_POST["sellername"])
+                ->update(array('address' => $_POST["address"]));
+            return redirect()->route('accountadjust',0);
+        }
+        if($_POST["edit"]==3)
+        {
+            DB::table('users')
+                ->where('name', $_POST["sellername"])
+                ->update(array('auth' => 2));
+            return redirect()->route('accountadjust',0);
+        }
+
     }
 
     /**

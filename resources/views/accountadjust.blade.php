@@ -99,11 +99,16 @@
             <div class='w3-sidebar w3-gray w3-bar-block' style='margin-top:40px;width:18%'>
                 <h3 class='w3-bar-item'>-我的帳戶-</h3>
                 <a href='{{route('accountadjust' ,'1')}}' class='w3-bar-item w3-button'><font size='5px'>查看/編輯基本資料</font></a>
+                    @if(auth()->user()->auth < 2)
                 <a href='{{route('accountadjust' ,'2')}}' class='w3-bar-item w3-button'><font size='5px'>申請賣家權限</font></a>
-
+                @endif
+                    @if(auth()->user()->auth === 3)
+                    <a href='{{route('accountadjust' ,'3')}}' class='w3-bar-item w3-button'><font size='5px'>審核賣家權限</font></a>
+                @endif
             </div>
 <main>
-@if($page->accountadjust === '1')
+
+        @if($page->accountadjust === '1')
 <section class='wrap'><form class='item_form' method='post' action="/user/store">
     @method('POST')
     @csrf
@@ -117,25 +122,54 @@
                 <input type='password' name='password' value="">
             </div>
             <div class='item item_button'>
-                <button type='submit'>更改/新增</button>
+                <button type='submit' name="edit" value="1">更改/新增</button>
             </div></form></section>
-@elseif($page->accountadjust === '2')
-            <section class='wrap'><form class='item_form' method='post' >
-
+        @elseif($page->accountadjust === '2')
+            @if(auth()->user()->auth===0)
+            <section class='wrap'><form class='item_form' method='post' action="/user/store">
+                @method('POST')
+                @csrf
     <!-- 登入 -->   <p>驗證賣家基本資料：</p>
             <div class='item'>
                 <span>賣家名稱</span>
-                <input type='text' name='sellername'>
+                {{auth()->user()->name}}<input type='hidden' name='sellername' value="{{auth()->user()->name}}">
             </div>
             <div class='item'>
                 <span>賣家地址</span>
-                <input type='text' name='selleraddress'>
+                <input type='text' name='address'>
             </div>
             <div class='item item_button'>
-                <button type='submit'>申請</button>
+                <button type='submit' name="edit" value="2">申請</button>
             </div> </form></section>
-@endif
+            @endif
+            @if(auth()->user()->auth===1)
+                    <section class='wrap'>
+                        <p>申請中</p>
+                    </section>
+                @endif
+    @elseif($page->accountadjust === '3')
+            {{ $seller=\Illuminate\Support\Facades\DB::table('users')->where('auth',1)->get() }}
 
+        <section class='wrap'>
+            @foreach($seller as $sellers)
+            <form class='item_form' method='post' action="/user/store">
+            @method('POST')
+            @csrf
+                <!-- 登入 -->   <p>審核賣家權限：</p>
+                <div class='item'>
+                    <span>申請名稱</span>
+                    {{$sellers->name}}<input type='hidden' name='sellername'value="{{$sellers->name}}">
+                </div>
+                <div class='item'>
+                    <span>賣家地址</span>
+                    {{$sellers->address}}<input type='hidden' name='address' value="{{$sellers->address}}">
+                </div>
+                <div class='item item_button'>
+                    <button type='submit' name="edit" value="3">同意</button>
+                </div> </form>
+            @endforeach
+        </section>
+    @endif
  </form></section></main>
 
 
