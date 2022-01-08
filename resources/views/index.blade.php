@@ -11,6 +11,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Latest compiled JavaScript -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script> -->
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <!-- bootstrap js -->
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
@@ -49,8 +65,8 @@
 <body>
 <header>
     <!-- 導覽 -->
-    <x class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+        <div class="container narbar-default narbar-fixed">
             <a class="navbar-brand" href="index.blade.php">小藍網購</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -79,57 +95,47 @@
                             </div>
                         </form>
                     </li>
-                    <?php
-                    //跳轉搜尋
-//                    if($_POST['search'] != null)
-//                        header("Location: search.blade.php?search=".$_POST['search']);
-                    ?>
                 </ul>
 
-                <ul class="navbar-nav">
 {{--                    @if (Route::has('login'))--}}
-                        <div class="hidden top-0 right-0 px-6 py-4 sm:block">
+{{--                        <div class="hidden top-0 right-0 px-6 py-4 sm:block">--}}
                             @auth
-                                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">會員中心</a>
-                                
-                                    <a class="text-sm text-gray-700 underline" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('登出')}}</a>
+                    <ul class="navbar-nav">
+                        <li class='nav-item dropdown'>
+                            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown'>
+                                歡迎{{$auth->name}}
+                            </a>
+                            <ul class='dropdown-menu' >
+                                <li>
+                                    <a class='dropdown-item'  href='{{route('accountadjust')}}' >我的帳戶</a>
+                                    <a class='dropdown-item' href='{{route('dindan')}}'>購買清單</a>
+                                    <a class='dropdown-item' href='{{route('logout')}}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">登出</a>
                                     <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>
+                                </li>
+                            </ul>
+
+                        </li></ul>
+
+
+
+{{--                                <a href="{{ route('accountadjust',$auth)  }}" class="text-sm text-gray-700 underline">{{$auth->name}}</a>--}}
+
+{{--                                    <a class="text-sm text-gray-700 underline" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('登出')}}</a>--}}
+{{--                                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>--}}
                             @else
-                                <a href="{{ route('loginn') }}" class="text-sm text-gray-700 underline">Login</a>
+                                <a href="{{ route('loginn') }}" class="text-sm text-gray-700 underline">登入</a>
 
 {{--                                @if (Route::has('register'))--}}
-                                    <a href="{{ route('registerr') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                    <a href="{{ route('registerr') }}" class="text-sm text-gray-700 underline">註冊</a>
 {{--                                @endif--}}
 {{--                            @endif--}}
                         </div>
                     @endif
-                    <?php
-                    //顯示會員
-//                    session_start();
-//                    if($_SESSION['name'] == null)
-//                        echo "<li class='nav-item'><a class='nav-link' href='login.blade.php'>會員登入</a></li>";
-//                    else
-//                    {
-//                        echo "
-//                            <li class='nav-item dropdown'>
-//                                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-//                                    歡迎".$_SESSION['name']. "
-//                                </a>
-//                                <ul class='dropdown-menu'>
-//                                    <li>
-//                                        <a class='dropdown-item' href='accountadjust.blade.php'>我的帳戶</a>
-//                                        <a class='dropdown-item' href='dindan.blade.php'>購買清單</a>
-//                                        <a class='dropdown-item' href='layouts/destroy.blade.php'>登出</a>
-//                                    </li>
-//                                </ul>
-//                            </li>
-//                            ";
-//                    }
-                    ?>
+
                 </ul>
             </div>
-        </div>
-    </x>
+        </nav>
+    </div>
 
     <!-- 輪播 -->
     <div id="advertisement" class="carousel slide container" data-bs-ride="carousel">
