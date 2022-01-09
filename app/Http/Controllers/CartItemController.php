@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartItemController extends Controller
 {
@@ -23,7 +24,20 @@ class CartItemController extends Controller
      */
     public function create()
     {
-        //
+//        $products=products()->get();
+//        $data= ['product'=>$product];
+        if (isset($_POST["cart"]))
+        {
+            $item=DB::table('products')->where('name' ,$_POST["name"])->first();
+            DB::table('cart_items')->insert(
+                array('member_id' => auth()->user()->id
+                , 'product_id' => $item->id
+                , 'quantity' => $_POST["quantity"]
+                )
+            );
+
+            return redirect()->route('product',1);
+        }
     }
 
     /**
@@ -32,9 +46,9 @@ class CartItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $product)
     {
-        //
+
     }
 
     /**

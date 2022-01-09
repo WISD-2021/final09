@@ -135,18 +135,21 @@
             <div class='product-pic'>
                 <img src='/images/{{$products->image}}'>
             </div>
+            <form method='post' action="{{route('cartitem.create')}}">
+                @method('POST')
+                @csrf
             <div class='product-detail'>
-                <h1>{{$products->name}}</h1>
+                <h1>{{$products->name}}</h1><input type="hidden" name="name" value="{{$products->name}}">
                 <div class='prise'>
                     <span>原價：${{$products->price *2}}</span>
                     <h2>${{$products->price}}</h2>
                 </div>
-                <form method='post'>
+
                     <table>
                         <tr>
                             <td>數量：</td>
                             <td>
-                                <input type='number' name='ordernumber' min='0' max='{{$products->stock}}' required>
+                                <input type='number' name='quantity' min='0' max='{{$products->stock}}' required>
                             </td>
                         </tr>
                         <tr>
@@ -155,7 +158,7 @@
                         </tr>
                     </table>
                     <div class='cart'>
-                        <input type='submit' value='加入購物車' name='incart'>
+                        <input type='submit' value='加入購物車' name='cart'>
                     </div>
                 </form>
             </div>

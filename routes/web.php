@@ -27,10 +27,11 @@ Route::get('search', [\App\Http\Controllers\PagesController::class, 'search'])->
 Route::get('cart', [\App\Http\Controllers\PagesController::class, 'cart'])->name('cart');
 Route::get('store', [\App\Http\Controllers\PagesController::class, 'store'])->name('store');
 Route::get('sellercenter', [\App\Http\Controllers\PagesController::class, 'sellercenter'])->name('sellercenter');
-Route::get('productDetail', [\App\Http\Controllers\PagesController::class, 'productDetail'])->name('productDetail');
+Route::get('product/{product}', [\App\Http\Controllers\PagesController::class, 'product'])->name('product');
 Route::get('dindan/{dindan}', [\App\Http\Controllers\PagesController::class, 'dindan'])->name('dindan');
 Route::get('category/{category}', [\App\Http\Controllers\PagesController::class, 'category'])->name('category');
 Route::get('accountadjust/{accountadjust}', [\App\Http\Controllers\PagesController::class, 'accountadjust'])->name('accountadjust');
 Route::get('administrator', [\App\Http\Controllers\PagesController::class, 'administrator'])->name('administrator');
 
 Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('user.store');
+Route::post('/cartitem', [\App\Http\Controllers\CartItemController::class, 'create'])->name('cartitem.create');
