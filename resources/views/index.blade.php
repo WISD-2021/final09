@@ -83,7 +83,7 @@
                         <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.blade.php">購物車</a>
+                        <a class="nav-link" href="{{route('cart')}}">購物車</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -115,9 +115,6 @@
                             </ul>
 
                         </li></ul>
-
-
-
 {{--                                <a href="{{ route('accountadjust',$auth)  }}" class="text-sm text-gray-700 underline">{{$auth->name}}</a>--}}
 
 {{--                                    <a class="text-sm text-gray-700 underline" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('登出')}}</a>--}}
@@ -264,10 +261,28 @@
             ?>
 {{--        </section>--}}
 {{--    </article>--}}
+    <input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('status',0)->get() }}">
 
     <article>
         <h2 class="my-4">最新商品</h2>
         <section class="row">
+
+
+
+            @foreach($product as $products)
+                <div class='col-lg-2 col-sm-6'>
+                    <div class='card'>
+                        <div class='card-img'>
+                            <img class='card-img-top' src='./images/{{$products->image}}' alt='{{$products->image}}' >
+                        </div>
+                        <div class='card-body'>
+                            <p class='card-text'>{{$products->name}}</p>
+                            <span>NT$ {{$products->price}}</span>
+                            <a href='{{route('product' , $products->id )}}' class='stretched-link'></a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
             <?php
 
 //            $ccc=new test();
