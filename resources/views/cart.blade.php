@@ -95,13 +95,15 @@
 </header>
 
 <main class="container">
-    <form method="POST">
+    <form method="POST" action="{{route('order.create')}}">
+        @method('POST')
+        @csrf
         <div class="cart">
             <div class="item-first">
-                <div class="item-first--select">
-                    <label for="select-all">全選</label>
-                    <input type="checkbox" name="select" onclick="check_all(this,'select[]')" id="select-all">
-                </div>
+{{--                <div class="item-first--select">--}}
+{{--                    <label for="select-all">全選</label>--}}
+{{--                    <input type="checkbox" name="select" onclick="check_all(this,'select[]')" id="select-all">--}}
+{{--                </div>--}}
                 <div class="item-first--pic">
                     <p>圖片</p>
                 </div>
@@ -128,9 +130,9 @@
 {{--            {{$cartt=\Illuminate\Support\Facades\DB::table('products')->where('id' ,$carts->product_id)->get()}}--}}
 
                 <div class='item'>
-                    <div class='item--select'>
-                        <input type='checkbox' name='select[]' value='{{$cartt[0]->name}}'>
-                    </div>
+{{--                    <div class='item--select'>--}}
+                        <input type='hidden' name='select[]' value='{{$cartt[0]->name}}'>
+{{--                    </div>--}}
                     <div class='item--pic'>
                         <img src='./images/{{$cartt[0]->image}}' alt='{{$cartt[0]->image}}'>
                     </div>
@@ -140,7 +142,7 @@
                                 <p>{{$cartt[0]->name}}</p>
                             </div>
                             <div class='wrap-top--quantity'>
-                                <p>{{$carts->quantity}}</p>
+                                <p>{{$carts->quantity}}</p><input type='hidden' name='quantity[]' value='{{$carts->quantity}}'>
                             </div>
                             <div class='wrap-top--price'>
                                 <p>{{$cartt[0]->price}}</p>

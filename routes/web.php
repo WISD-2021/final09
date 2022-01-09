@@ -35,3 +35,5 @@ Route::get('administrator', [\App\Http\Controllers\PagesController::class, 'admi
 
 Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('user.store');
 Route::post('/cartitem', [\App\Http\Controllers\CartItemController::class, 'create'])->name('cartitem.create');
+Route::get('/cartitem/{cartitem}', [\App\Http\Controllers\CartItemController::class, 'destroy'])->name('cartitem.destroy');
+Route::post('/order', [\App\Http\Controllers\OrderController::class, 'create'])->name('order.create');
