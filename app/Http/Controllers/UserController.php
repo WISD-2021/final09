@@ -74,6 +74,7 @@ class UserController extends Controller
                 , 'image' => $_POST["image"]
                 , 'price' => $_POST["price"]
                 , 'stock' => $_POST["quantity"]
+                , 'status' => 0
                 )
             );
             return redirect()->route('accountadjust',0);
