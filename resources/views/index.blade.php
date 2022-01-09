@@ -73,15 +73,15 @@
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">通知</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('store')}}">賣場</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="javascript:void(0)">通知</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('store')}}">賣場</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('cart')}}">購物車</a>
                     </li>
@@ -89,10 +89,10 @@
                 <ul class="navbar-nav">
                     <li class='nav-item'>
                         <form method='POST'>
-                            <div class='input-group'>
-                                <input type='text' class='form-control' placeholder='搜尋' name='search'>
-                                <button class='btn btn-dark' type='submit'>Go</button>
-                            </div>
+{{--                            <div class='input-group'>--}}
+{{--                                <input type='text' class='form-control' placeholder='搜尋' name='search'>--}}
+{{--                                <button class='btn btn-dark' type='submit'>Go</button>--}}
+{{--                            </div>--}}
                         </form>
                     </li>
                 </ul>
@@ -115,17 +115,12 @@
                             </ul>
 
                         </li></ul>
-{{--                                <a href="{{ route('accountadjust',$auth)  }}" class="text-sm text-gray-700 underline">{{$auth->name}}</a>--}}
-
-{{--                                    <a class="text-sm text-gray-700 underline" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('登出')}}</a>--}}
-{{--                                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">@csrf</form>--}}
                             @else
                                 <a href="{{ route('loginn') }}" class="text-sm text-gray-700 underline">登入</a>
 
-{{--                                @if (Route::has('register'))--}}
+
                                     <a href="{{ route('registerr') }}" class="text-sm text-gray-700 underline">註冊</a>
-{{--                                @endif--}}
-{{--                            @endif--}}
+
                         </div>
                     @endif
 
