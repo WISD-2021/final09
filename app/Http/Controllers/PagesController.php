@@ -45,12 +45,14 @@ class PagesController extends Controller
         return view('sellercenter');
     }
 
-    public function productDetail(){
-        return view('productDetail');
+    public function product(Request $page){
+//        $product=DB::table('products')->where('id',$page)->get();
+        return view('product' ,['page'=>$page]);
     }
 
-    public function dindan(){
-        return view('dindan');
+    public function dindan(Request $page){
+        $auth=auth()->user();
+        return view('dindan',['auth'=>$auth],['page' => $page]);
     }
 
     public function category(Request $id){//類別搜尋功能
