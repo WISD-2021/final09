@@ -100,34 +100,34 @@
 <main class="container">
 
     <aside>
-        <section class="product-category">
-            <div>
-                <a href="category.blade.php?category=生活">生活</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=服飾">服飾</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=娛樂">娛樂</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=3C">3C</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=家電">家電</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=其他">其他</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=零食">零食</a>
-            </div>
-            <div>
-                <a href="category.blade.php?category=書">書</a>
-            </div>
-        </section>
+{{--        <section class="product-category">--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=生活">生活</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=服飾">服飾</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=娛樂">娛樂</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=3C">3C</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=家電">家電</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=其他">其他</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=零食">零食</a>--}}
+{{--            </div>--}}
+{{--            <div>--}}
+{{--                <a href="category.blade.php?category=書">書</a>--}}
+{{--            </div>--}}
+{{--        </section>--}}
     </aside>
-<input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('id',3)->get() }}">
+<input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('id',$page->product)->get() }}">
 
     @foreach($product as $products)
     <article>
