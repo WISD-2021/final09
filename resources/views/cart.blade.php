@@ -140,10 +140,10 @@
                                 <p>{{$cartt[0]->name}}</p>
                             </div>
                             <div class='wrap-top--quantity'>
-                                <p>{{$cartt[0]->price}}</p>
+                                <p>{{$carts->quantity}}</p>
                             </div>
                             <div class='wrap-top--price'>
-                                <p>{{$carts->quantity}}</p>
+                                <p>{{$cartt[0]->price}}</p>
                             </div>
                         </div>
                         <div class='wrap-button'>
@@ -152,7 +152,7 @@
                     </div>
                     <input type="hidden" value="{{$total=$total+$carts->quantity * $cartt[0]->price}}">
                     <div class='item--delete'>
-                        <button name='123' value='delete'>刪除</button>
+                        <a href="{{route('cartitem.destroy',$cartt[0]->id)}}" value='delete'>刪除</a>
                     </div>
                 </div>
             @endforeach

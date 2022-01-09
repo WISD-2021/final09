@@ -91,8 +91,10 @@ class CartItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($name)
     {
-        //
+        $auth=auth()->user();
+        DB::table('cart_items')->where('product_id', $name)->where('member_id',$auth->id)->delete();
+        return redirect()->route('cart');
     }
 }
