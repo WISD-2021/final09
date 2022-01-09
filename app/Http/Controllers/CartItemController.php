@@ -36,7 +36,7 @@ class CartItemController extends Controller
                 )
             );
 
-            return redirect()->route('product',1);
+            return redirect()->route('product',$item->id);
         }
     }
 
