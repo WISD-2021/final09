@@ -44,15 +44,15 @@
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">通知</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="store.blade.php">賣場</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="javascript:void(0)">通知</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="store.blade.php">賣場</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link" href="cart.blade.php">購物車</a>
                     </li>
@@ -60,10 +60,10 @@
                 <ul class="navbar-nav">
                     <li class='nav-item'>
                         <form method='POST'>
-                            <div class='input-group'>
-                                <input type='text' class='form-control' placeholder='搜尋' name='search'>
-                                <button class='btn btn-dark' type='submit'>Go</button>
-                            </div>
+{{--                            <div class='input-group'>--}}
+{{--                                <input type='text' class='form-control' placeholder='搜尋' name='search'>--}}
+{{--                                <button class='btn btn-dark' type='submit'>Go</button>--}}
+{{--                            </div>--}}
                         </form>
                     </li>
 
