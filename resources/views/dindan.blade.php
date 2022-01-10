@@ -232,11 +232,17 @@
                         <p>小計： {{$order_detail[0]->quantity * $product[0]->price}}</p>
                     </div>
                 </div>
-
+                @if($page->dindan == 1)
                 <div class='item--delete'>
 {{--                    <a href="{{route('cartitem.destroy',$[0]->id)}}" value='delete'>刪除</a>--}}
-                    <p>處理中</p>
+                    <p>已完成</p>
                 </div>
+                    @elseif($page->dindan == 2)
+                    <div class='item--delete'>
+                        {{-- <a href="{{route('cartitem.destroy',$[0]->id)}}" value='delete'>刪除</a>--}}
+                        <p>處理中</p>
+                    </div>
+                    @endif
             </div>
         @endforeach
         @endif
