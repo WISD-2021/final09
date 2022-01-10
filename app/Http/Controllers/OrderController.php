@@ -37,10 +37,11 @@ class OrderController extends Controller
                     , 'status' => 0
                     )
                 );
-                if(isset($product[0]->id))
+                $order = DB::table('orders')->orderBy('id' ,'desc')->get();
+                if(isset($product[0]->id)&&isset($order[0]->id))
                 {
                     DB::table('order_details')->insert(
-                        array('order_id' => auth()->user()->id
+                        array('order_id' => $order[0]->id
                         , 'product_id' => $product[0]->id
                         , 'quantity' => $item[$i]->quantity
                         )
