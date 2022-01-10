@@ -65,8 +65,8 @@
 <body>
 <header>
     <!-- 導覽 -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
-        <div class="container narbar-default narbar-fixed">
+    <div class="navbar navbar-expand-sm navbar-dark bg-dark ">
+        <nav class="container narbar-default narbar-fixed">
             <a class="navbar-brand" href="index.blade.php">小藍網購</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -116,18 +116,20 @@
 
                         </li></ul>
                             @else
+                                <li>
                                 <a href="{{ route('loginn') }}" class="text-sm text-gray-700 underline">登入</a>
 
-
                                     <a href="{{ route('registerr') }}" class="text-sm text-gray-700 underline">註冊</a>
+                                </li>
 
-                        </div>
+
+
                     @endif
-
+                    </div>
                 </ul>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
+
 
     <!-- 輪播 -->
     <div id="advertisement" class="carousel slide container" data-bs-ride="carousel">
@@ -268,7 +270,7 @@
                 <div class='col-lg-2 col-sm-6'>
                     <div class='card'>
                         <div class='card-img'>
-                            <img class='card-img-top' src='./images/{{$products->image}}' alt='{{$products->image}}' >
+                            <img class='card-img-top' src='./images/{{$products->image}}' alt='{{$products->image}}' style="object-fit: contain;">
                         </div>
                         <div class='card-body'>
                             <p class='card-text'>{{$products->name}}</p>
