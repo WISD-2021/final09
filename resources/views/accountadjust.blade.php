@@ -54,7 +54,7 @@
 {{--                        <a class="nav-link" href="sellercenter.blade.php">賣家中心</a>--}}
 {{--                    </li>--}}
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.blade.php">購物車</a>
+                        <a class="nav-link" href="{{route('cart')}}">購物車</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
