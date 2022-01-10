@@ -34,7 +34,14 @@ class PagesController extends Controller
     }
 
     public function cart(){
-        return view('cart');
+        if(\auth()->check())
+        {
+            return view('cart');
+        }
+        else
+        {
+            return redirect()->route('loginn') ->with('alert', 'Updated!');
+        }
     }
 
     public function store(){

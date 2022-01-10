@@ -28,16 +28,20 @@ class CartItemController extends Controller
 //        $data= ['product'=>$product];
         if (isset($_POST["cart"]))
         {
-            $item=DB::table('products')->where('name' ,$_POST["name"])->first();
-            DB::table('cart_items')->insert(
-                array('member_id' => auth()->user()->id
-                , 'product_id' => $item->id
-                , 'quantity' => $_POST["quantity"]
-                )
-            );
-
-            return redirect()->route('product',$item->id);
+            if (auth()->check())
+            {
+                $item=DB::table('products')->where('name' ,$_POST["name"])->first();
+                DB::table('cart_items')->insert(
+                    array('member_id' => auth()->user()->id
+                    , 'product_id' => $item->id
+                    , 'quantity' => $_POST["quantity"]
+                    )
+                );
+            }
         }
+
+            return redirect()->back();
+
     }
 
     /**
