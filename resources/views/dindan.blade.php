@@ -32,6 +32,7 @@
 
     <!-- style -->
     <link rel="stylesheet" href="{{asset('css/style3.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 
 </head>
@@ -157,25 +158,89 @@
             </div>
             <!--                <ion-icon name="cart-outline"></ion-icon>-->
         </section>
-        <section class="wrap">
-        <?php
-//        if(isset($_SESSION['buy'],$_SESSION['ordernumber'])){
-//            if(isset($_SESSION['name'])){
-//                include 'test.php';
-//                $dindan = new test();
-//                $dindan->Dindan($_GET['p_id']);
-//                $_SESSION['ordernumber']=NULL;
-//                unset($_SESSION['buy']);
-//                echo "<script>alert('購買成功')</script>";
-//            }
-//            else{
-//                echo "<script>alert('請先登入會員才能購買商品')</script>";
-//                echo "<script>window.location='login.blade.php'</script>";
-//            }
-//        }
-        ?>
-        </section>
+
     </article>
+    <div class="cart">
+        <div class="item-first">
+            {{--                <div class="item-first--select">--}}
+            {{--                    <label for="select-all">全選</label>--}}
+            {{--                    <input type="checkbox" name="select" onclick="check_all(this,'select[]')" id="select-all">--}}
+            {{--                </div>--}}
+            <div class="item-first--pic">
+                <p>圖片</p>
+            </div>
+            <div class="item-first--content">
+                <div class="item-first--content__name">
+                    <p>商品名稱</p>
+                </div>
+                <div class="item-first--content__quantity">
+                    <p>數量</p>
+                </div>
+                <div class="item-first--content__price">
+                    <p>價格</p>
+                </div>
+            </div>
+            @if($page->dindan == 1)
+            <div class="item-first--delete">
+                <p>操作</p>
+            </div>
+                @elseif($page->dindan == 2)
+                <div class="item-first--delete">
+                    <p>狀態</p>
+                </div>
+            @endif
+        </div>
+        @if($page->dindan == 1)
+        <input type="hidden" value="{{$order=\Illuminate\Support\Facades\DB::table('orders')->where('member_id' ,auth()->user()->id)->where('status',1)->get()}}">
+        @endif
+        @if($page->dindan == 2)
+            <input type="hidden" value="{{$order=\Illuminate\Support\Facades\DB::table('orders')->where('member_id' ,auth()->user()->id)->where('status',0)->get()}}">
+{{--            {{$order=\Illuminate\Support\Facades\DB::table('orders')->where('member_id' ,auth()->user()->id)->where('status',0)->get()}}--}}
+        @endif
+            {{--            {{$cart=\Illuminate\Support\Facades\DB::table('cart_items')->where('member_id' ,auth()->user()->id)->get()}}--}}
+        <input type="hidden" value="{{$total=0}}">
+        @if($page->dindan == 1||$page->dindan == 2)
+        @foreach($order as $orders)
+            <input type="hidden" value="{{$order_detail=\Illuminate\Support\Facades\DB::table('order_details')->where('order_id' ,$orders->id)->get()}}">
+{{--                {{$order_detail=\Illuminate\Support\Facades\DB::table('order_details')->where('order_id' ,$orders->id)->get()}}--}}
+                @if(isset($order_detail[0]->product_id))
+                <input type="hidden" value="{{$product=\Illuminate\Support\Facades\DB::table('products')->where('id' ,$order_detail[0]->product_id)->get()}}">
+            @endif
+                    {{--            {{$cartt=\Illuminate\Support\Facades\DB::table('products')->where('id' ,$carts->product_id)->get()}}--}}
+
+            <div class='item'>
+                {{--                    <div class='item--select'>--}}
+                {{--                    </div>--}}
+                <div class='item--pic'>
+                    <img src='/images/{{$product[0]->image}}' alt='{{$product[0]->image}}'>
+                </div>
+                <div class='item--content'>
+                    <div class='wrap-top'>
+                        <div class='wrap-top--name'>
+                            <p>{{$product[0]->name}}</p>
+                        </div>
+                        <div class='wrap-top--quantity'>
+{{--                            @if(isset($order_detail[0]->quantity))--}}
+                            <p>{{$order_detail[0]->quantity}}</p>
+{{--                                @endif--}}
+                        </div>
+                        <div class='wrap-top--price'>
+                            <p>{{$product[0]->price}}</p>
+                        </div>
+                    </div>
+                    <div class='wrap-button'>
+                        <p>小計： {{$order_detail[0]->quantity * $product[0]->price}}</p>
+                    </div>
+                </div>
+
+                <div class='item--delete'>
+{{--                    <a href="{{route('cartitem.destroy',$[0]->id)}}" value='delete'>刪除</a>--}}
+                    <p>處理中</p>
+                </div>
+            </div>
+        @endforeach
+        @endif
+    </div>
 </main>
 
 </body>
