@@ -37,3 +37,4 @@ Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'
 Route::post('/cartitem', [\App\Http\Controllers\CartItemController::class, 'create'])->name('cartitem.create');
 Route::get('/cartitem/{cartitem}', [\App\Http\Controllers\CartItemController::class, 'destroy'])->name('cartitem.destroy');
 Route::post('/order', [\App\Http\Controllers\OrderController::class, 'create'])->name('order.create');
+Route::post('/order/store', [\App\Http\Controllers\OrderController::class, 'store'])->name('order.store');

@@ -104,6 +104,7 @@
                 @endif
                     @if(auth()->user()->auth === 3)
                     <a href='{{route('accountadjust' ,'3')}}' class='w3-bar-item w3-button'><font size='5px'>審核賣家權限</font></a>
+                    <a href='{{route('accountadjust' ,'5')}}' class='w3-bar-item w3-button'><font size='5px'>訂單管理</font></a>
                 @endif
                 @if(auth()->user()->auth >= 2)
                     <a href='{{route('accountadjust' ,'4')}}' class='w3-bar-item w3-button'><font size='5px'>商品上架</font></a>
@@ -151,7 +152,7 @@
                     </section>
                 @endif
     @elseif($page->accountadjust === '3')
-            {{ $seller=\Illuminate\Support\Facades\DB::table('users')->where('auth',1)->get() }}
+            <input type="hidden" value="{{ $seller=\Illuminate\Support\Facades\DB::table('users')->where('auth',1)->get() }}">
 
         <section class='wrap'>
             @foreach($seller as $sellers)
@@ -218,6 +219,47 @@
                 <div class='item item_button'>
                     <button type='submit' name="edit" value="4">上架</button>
                 </div></form></section>
+        @elseif($page->accountadjust === '5')
+        <input type="hidden" value="{{ $order=\Illuminate\Support\Facades\DB::table('orders')->where('status',0)->get() }}">
+
+        <section class='wrap'>
+            @foreach($order as $orders)
+                <form class='item_form' method='post' action="{{route('order.store')}}">
+                @method('POST')
+                @csrf
+                    <input type="hidden" value="{{$order_detail=\Illuminate\Support\Facades\DB::table('order_details')->where('order_id' ,$orders->id)->get()}}">
+
+                    <input type="hidden" value="{{$member=\Illuminate\Support\Facades\DB::table('users')->where('id' ,$orders->member_id)->get()}}">
+
+                        @if(isset($order_detail[0]->product_id))
+                        <input type="hidden" value="{{$product=\Illuminate\Support\Facades\DB::table('products')->where('id' ,$order_detail[0]->product_id)->get()}}">
+                @endif
+                <!-- 登入 -->   <p>未處理訂單：</p>
+                    <div class='item'>
+                        <span>買家名稱：
+                        {{$member[0]->name}}</span><input type='hidden' name='order_id'value="{{$orders->id}}">
+                    </div>
+                    <div class='item'>
+                        <span>商品名稱：
+                        {{$product[0]->name}}</span>
+                    </div>
+                    <div class='item'>
+                        <span>商品單價：
+                        {{$product[0]->price}}</span>
+                    </div>
+                    <div class='item'>
+                        <span>購買數量：
+                        {{$order_detail[0]->quantity}}</span>
+                    </div>
+                    <div class='item'>
+                        <span>總額：
+                        {{ $order_detail[0]->quantity * $product[0]->price}}</span>
+                    </div>
+                    <div class='item item_button'>
+                        <button type='submit' name="order_complete" value="3">完成訂單</button>
+                    </div> </form>
+            @endforeach
+        </section>
     @endif
  </form></section></main>
 

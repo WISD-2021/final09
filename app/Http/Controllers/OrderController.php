@@ -62,9 +62,15 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        if(isset($_POST["order_complete"]))
+        {
+            DB::table('orders')
+                ->where('id', $_POST["order_id"])
+                ->update(array('status' => 1));
+        }
+        return redirect()->route('accountadjust',5);
     }
 
     /**
