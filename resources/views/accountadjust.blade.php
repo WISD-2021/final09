@@ -189,8 +189,9 @@
                         <option value="服飾">服飾</option>
                         <option value="娛樂">娛樂</option>
                         <option value="3C">3C</option>
-                        <option value="家電">家電</option>
-                        <option value="其他">其他</option>
+                        <option value="遊戲">遊戲</option>
+{{--                        <option value="家電">家電</option>--}}
+{{--                        <option value="其他">其他</option>--}}
                         <option value="零食">零食</option>
                         <option value="書">書</option>
                     </select>
