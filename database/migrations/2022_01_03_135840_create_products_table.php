@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateProductsTable extends Migration
 {
@@ -22,8 +23,9 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->integer('price');
             $table->integer('stock');
-            $table->integer('status');
-            $table->timestamps();
+            $table->integer('status')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
