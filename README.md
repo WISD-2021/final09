@@ -82,17 +82,22 @@
 * 管理者完成訂單|Route::post('/order/store', [\App\Http\Controllers\OrderController::class, 'store'])->name('order.store');
 - - -
 ## ERD
-![Imgur](https://imgur.com/)
+![Imgur](https://imgur.com/Dp3GWxj.png)
 - - -
 ## 關聯式綱要圖
-![Imgur](https://imgur.com/)
+![Imgur](https://imgur.com/Vp72Gfy.png)
 - - -
 ## 資料表欄位設計
-![Imgur](https://imgur.com/)
+![Imgur](https://imgur.com/xwb3i6p.png)
 - - -
-![Imgur](https://imgur.com/)
+![Imgur](https://imgur.com/kqY5LQb.png)
 - - -
-
+![Imgur](https://imgur.com/BczbW2s.png)
+- - -
+![Imgur](https://imgur.com/cqtIR5o.png)
+- - -
+![Imgur](https://imgur.com/rLm3r3C.png)
+- - -
 # 初始專案與DB負責的同學
 * 初始專案 — [3A832052 郭庭瑞](https://github.com/s3A832052)
 * 資料庫建立、資料庫關聯 — [3A832035 廖琮愷](https://github.com/3A832035)
