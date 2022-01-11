@@ -258,7 +258,7 @@
             ?>
 {{--        </section>--}}
 {{--    </article>--}}
-    <input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('status',0)->get() }}">
+    <input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('status',0)->orderBy('created_at','desc')->get() }}">
 
     <article>
         <h2 class="my-4">最新商品</h2>
@@ -270,7 +270,7 @@
                 <div class='col-lg-2 col-sm-6'>
                     <div class='card'>
                         <div class='card-img'>
-                            <img class='card-img-top' src='./images/{{$products->image}}' alt='{{$products->image}}' style="object-fit: contain;">
+                            <img class='card-img-top' src='/images/{{$products->image}}' alt='{{$products->image}}' style="object-fit: contain;">
                         </div>
                         <div class='card-body'>
                             <p class='card-text'>{{$products->name}}</p>
