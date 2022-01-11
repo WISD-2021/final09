@@ -146,13 +146,13 @@
                 <img class="d-block" src="images/廣告1.png">
             </div>
             <div class="carousel-item bg-secondary">
-                <img class="d-block" src="images/test1.jfif">
+                <img class="d-block" src="images/ad01.jpg">
             </div>
             <div class="carousel-item bg-secondary">
-                <img class="d-block" src="images/test2.jfif">
+                <img class="d-block" src="images/ad02.jpg">
             </div>
             <div class="carousel-item bg-secondary">
-                <img class="d-block" src="images/test3.jfif">
+                <img class="d-block" src="images/ad03.jpg">
             </div>
         </div>
 
