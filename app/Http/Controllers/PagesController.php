@@ -63,10 +63,10 @@ class PagesController extends Controller
     }
 
     public function category(Request $id){//類別搜尋功能
-        $post = Post::find($id);
-        $data = ['post' => $post];
+//        $post = Post::find($id);
+//        $data = ['post' => $post];
         //$search= DB::table('')
-        return view('category',$data);
+        return view('category',['page'=> $id ]);
     }
 
     public function accountadjust(Request $page){

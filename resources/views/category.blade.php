@@ -88,36 +88,10 @@
                             </div>
                         </form>
                     </li>
-                    <?php
-                    //跳轉搜尋
-//                    if($_POST['search'] != null)
-//                        header("Location: search.blade.php?search=".$_POST['search']);
-                    ?>
+
                 </ul>
                 <ul class="navbar-nav">
-                    <?php
-                    //顯示會員
-//                    session_start();
-//                    if($_SESSION['name'] == null)
-//                        echo "<li class='nav-item'><a class='nav-link' href='login.blade.php'>會員登入</a></li>";
-//                    else
-//                    {
-//                        echo "
-//                            <li class='nav-item dropdown'>
-//                                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-//                                    歡迎".$_SESSION['name']. "
-//                                </a>
-//                                <ul class='dropdown-menu'>
-//                                    <li>
-//                                        <a class='dropdown-item' href='accountadjust.blade.php'>我的帳戶</a>
-//                                        <a class='dropdown-item' href='dindan.blade.php'>購買清單</a>
-//                                        <a class='dropdown-item' href='layouts/destroy.blade.php'>登出</a>
-//                                    </li>
-//                                </ul>
-//                            </li>
-//                            ";
-//                    }
-                    ?>
+
                 </ul>
             </div>
         </div>
@@ -128,35 +102,46 @@
             <aside>
                 <section class="product-category">
                     <div>
-                        <a href="category.blade.php?category=生活">生活</a>
+                        <a href="{{route('category','生活')}}">生活</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=服飾">服飾</a>
+                        <a href="{{route('category','服飾')}}">服飾</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=娛樂">娛樂</a>
+                        <a href="{{route('category','娛樂')}}">娛樂</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=3C">3C</a>
+                        <a href="{{route('category','3C')}}">3C</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=家電">家電</a>
+                        <a href="{{route('category','遊戲')}}">遊戲</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=其他">其他</a>
+                        <a href="{{route('category','書')}}">書</a>
                     </div>
                     <div>
-                        <a href="category.blade.php?category=零食">零食</a>
-                    </div>
-                    <div>
-                        <a href="category.blade.php?category=書">書</a>
+                        <a href="{{route('category','零食')}}">零食</a>
                     </div>
                 </section>
             </aside>
+    <input type="hidden" value="{{ $product=\Illuminate\Support\Facades\DB::table('products')->where('category',$page->category)->get() }}">
         <article>
-            @foreach($post as $posts)
-                {{$posts->name}}
+            <section class="row">
+            @foreach($product as $products)
+                <div class='col-lg-2 col-sm-6'>
+                    <div class='card'>
+                        <div class='card-img'>
+                            <img class='card-img-top' src='/images/{{$products->image}}' alt='{{$products->image}}' style="object-fit: contain;">
+                        </div>
+                        <div class='card-body'>
+                            <p class='card-text'>{{$products->name}}</p>
+                            <span>NT$ {{$products->price}}</span>
+                            <a href='{{route('product' , $products->id )}}' class='stretched-link'></a>
+                        </div>
+                    </div>
+                </div>
             @endforeach
+            </section>
         </article>
 
 </main>
