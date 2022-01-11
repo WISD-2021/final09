@@ -11,9 +11,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+
 
     protected $fillable = [
         'id',
@@ -33,4 +31,13 @@ class Product extends Model
         'content' => 'string',
         'is_feature' => 'boolean',
     ];
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
+    public function CartItem(){
+        return $this->hasMany(CartItem::class);
+    }
+    public function OrderDetail(){
+        return $this->hasMany(OrderDetail::class);
+    }
 }
