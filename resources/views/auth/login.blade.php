@@ -1,48 +1,75 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>小藍網購</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <x-jet-validation-errors class="mb-4" />
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Latest compiled JavaScript -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+    <!-- bootstrap js -->
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- style -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+</head>
+
+<body>
+
+<header>
+    <!-- 導覽 -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{route('index')}}">小藍網購</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
             </div>
-        @endif
+        </div>
+    </nav>
+</header>
 
-        <form method="POST" action="{{ route('login') }}">
+<main>
+    <!-- 登入 -->
+    <section class="wrap">
+        <form class="item_form" method="post" action="{{route('login')}}">
             @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
+            <div class="item">
+                <span>email</span>
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+            <div class="item">
+                <span>密碼</span>
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
+            <div class="item item_button">
+                <button type="submit">登入</button>
+                <a href="{{route('registerr')}}">註冊</a>
             </div>
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+        <?php
+        //        include "test.php";
+
+        //        $login = new test();
+        //        $login->Login($_POST['name'], $_POST['pwd']);
+        ?>
+    </section>
+</main>
+
+</body>
+
+</html>
+
